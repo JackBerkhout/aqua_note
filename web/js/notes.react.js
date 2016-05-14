@@ -12,7 +12,7 @@ var NoteSection = React.createClass({
 
     loadNotesFromServer: function() {
         $.ajax({
-            url: '/genus/octopus/notes',
+            url: this.props.url,
             success: function (data) {
                 this.setState({notes: data.notes});
             }.bind(this)
@@ -33,10 +33,18 @@ var NoteSection = React.createClass({
 });
 
 var NoteList = React.createClass({
+    // lets use a namespace to avoid globals.
+        // still need to set this when DOM/body is ready
+
+
+
+
     render: function() {
         var noteNodes = this.props.notes.map(function(note) {
+            // var rootContext = window.location.hostname + "/" + note.avatarUri;
             return (
-                <NoteBox username={note.username} avatarUri={note.avatarUri} date={note.date} key={note.id}>{note.note}</NoteBox>
+               <NoteBox username={note.username} avatarUri={note.avatarUri} date={note.date} key={note.id}>{note.note}</NoteBox>
+                // <NoteBox username={note.username} avatarUri={rootContext} date={note.date} key={note.id}>{note.note}</NoteBox>
             );
         });
 
@@ -53,7 +61,7 @@ var NoteBox = React.createClass({
         return (
             <div className="cd-timeline-block">
                 <div className="cd-timeline-img">
-                    <img src={this.props.avatarUri} className="img-circle" alt="Leanna!" />
+                    <img src={this.props.avatarUri} className="img-circle" alt={this.props.username} />
                 </div>
                 <div className="cd-timeline-content">
                     <h2><a href="#">{this.props.username}</a></h2>

@@ -48,19 +48,22 @@ class GenusController extends Controller
     }
 
     /**
-     * @Route("/genus/{genusName}/notes")
+     * @Route("/genus/{genusName}/notes", name="genus_show_notes")
      * @Method("GET")
      */
     public function getNotesAction()
     {
+        $image_path = "/aqua_note/web/images/";
+//        $image_path = "images/";
         $notes = [
-            ['id' => 1, 'username' => 'Jack', 'email' => 'jack@jacksoft.eu'],
-            ['id' => 2, 'username' => 'Leo', 'email' => 'leo@jacksoft.eu'],
-            ['id' => 3, 'username' => 'Vasinee', 'email' => 'vasinee@jacksoft.eu'],
+            ['id' => 1, 'username' => 'Leanna', 'avatarUri' => $image_path.'leanna.jpeg', 'note' => 'Octopus asked me a riddle, outsmarted me', 'date' => 'Dec. 10, 2015'],
+            ['id' => 2, 'username' => 'Ryan', 'avatarUri' => $image_path.'ryan.jpeg', 'note' => 'I counted 8 legs... as they wrapped around me', 'date' => 'Dec. 1, 2015'],
+            ['id' => 3, 'username' => 'Leanna', 'avatarUri' => $image_path.'leanna.jpeg', 'note' => 'Inked!', 'date' => 'Aug. 20, 2015'],
         ];
 
         $data = [
             'notes' => $notes,
+            'image_path' => $image_path,
         ];
 
 //        return new Response(json_encode($data));
